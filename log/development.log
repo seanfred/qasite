@@ -1,0 +1,143 @@
+  [1m[36m (1.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (1.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20131017231224)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20131017231224"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateQuestions (20131017231318)
+  [1m[35m (0.4ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "questions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "question" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20131017231318"]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAnswers (20131017231408)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "answers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "answer" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20131017231408"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddAuthorIdAndQuestionIdToAnswers (20131017232136)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "answers" ADD "author_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ADD "question_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20131017232136"]]
+  [1m[35m (3.1ms)[0m  commit transaction
+Migrating to AddAuthorIdToQuestions (20131018001008)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  ALTER TABLE "questions" ADD "author_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20131018001008"]]
+  [1m[35m (2.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2013-10-17 15:26:48 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by QuestionsController#index as HTML
+  [1m[35mQuestion Load (0.1ms)[0m  SELECT "questions".* FROM "questions"
+  Rendered questions/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 1133ms (Views: 1063.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2013-10-17 15:26:50 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2013-10-17 15:26:50 -0700
+
+
+Started GET "/assets/answers.js?body=1" for 127.0.0.1 at 2013-10-17 15:26:50 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2013-10-17 15:26:50 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2013-10-17 15:26:50 -0700
+
+
+Started GET "/assets/questions.css?body=1" for 127.0.0.1 at 2013-10-17 15:26:50 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2013-10-17 15:26:50 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-10-17 15:26:50 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-10-17 15:26:50 -0700
+
+
+Started GET "/assets/answers.css?body=1" for 127.0.0.1 at 2013-10-17 15:26:50 -0700
+
+
+Started GET "/questions/new" for 127.0.0.1 at 2013-10-17 15:26:56 -0700
+Processing by QuestionsController#new as HTML
+  Rendered questions/_form.html.erb (73.7ms)
+  Rendered questions/new.html.erb within layouts/application (81.9ms)
+Completed 200 OK in 94ms (Views: 90.6ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/questions" for 127.0.0.1 at 2013-10-17 15:27:11 -0700
+Processing by QuestionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EnsBV5Io93IPO+TFEbXVYGCxxFPr6mwvBjp/3uSwD4Q=", "question"=>{"question"=>"how old are you"}, "commit"=>"Create Question"}
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (4.6ms)[0m  INSERT INTO "questions" ("created_at", "question", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 17 Oct 2013 22:27:12 UTC +00:00], ["question", "how old are you"], ["updated_at", Thu, 17 Oct 2013 22:27:12 UTC +00:00]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://0.0.0.0:3000/questions/1
+Completed 302 Found in 35ms (ActiveRecord: 6.6ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2013-10-17 15:27:12 -0700
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mQuestion Load (0.4ms)[0m  SELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered questions/show.html.erb within layouts/application (7.5ms)
+Completed 500 Internal Server Error in 16ms
+
+ActionView::Template::Error (undefined method `email' for nil:NilClass):
+     7: 
+     8: <p>
+     9:   <strong>Author Email:</strong>
+    10:   <%= @question.author.email %>
+    11: </p>
+    12: 
+    13: <%= link_to 'Edit', edit_question_path(@question) %> |
+  app/views/questions/show.html.erb:10:in `_app_views_questions_show_html_erb__3008740940662473445_70205894315380'
+
+
+  Rendered /Users/sean/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /Users/sean/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /Users/sean/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (23.9ms)
+
+
+Started POST "/questions" for 127.0.0.1 at 2013-10-17 15:27:27 -0700
+Processing by QuestionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EnsBV5Io93IPO+TFEbXVYGCxxFPr6mwvBjp/3uSwD4Q=", "question"=>{"question"=>"how old are you"}, "commit"=>"Create Question"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "questions" ("created_at", "question", "updated_at") VALUES (?, ?, ?)  [["created_at", Thu, 17 Oct 2013 22:27:27 UTC +00:00], ["question", "how old are you"], ["updated_at", Thu, 17 Oct 2013 22:27:27 UTC +00:00]]
+  [1m[36m (9.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://0.0.0.0:3000/questions/2
+Completed 302 Found in 25ms (ActiveRecord: 10.1ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2013-10-17 15:27:27 -0700
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mQuestion Load (0.3ms)[0m  SELECT "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered questions/show.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `email' for nil:NilClass):
+     7: 
+     8: <p>
+     9:   <strong>Author Email:</strong>
+    10:   <%= @question.author.email %>
+    11: </p>
+    12: 
+    13: <%= link_to 'Edit', edit_question_path(@question) %> |
+  app/views/questions/show.html.erb:10:in `_app_views_questions_show_html_erb__3008740940662473445_70205894315380'
+
+
+  Rendered /Users/sean/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /Users/sean/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /Users/sean/.rvm/gems/ruby-2.0.0-p247/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (14.7ms)
